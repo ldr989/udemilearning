@@ -24,10 +24,27 @@ const movieDB = {
     ]
 };
 
+function sortTitles(data) {
+    let newMovieDB = {};
+    for (let i = 0; i < data.movies.length; i++) {
+        newMovieDB[i + 1] = data.movies.sort()[i];
+    }
+    return newMovieDB;
+}
+const newMovieDB = sortTitles(movieDB);
+
 const promo = document.getElementsByClassName('promo'),
       adv = document.getElementsByClassName('promo__adv'),
       genre = document.getElementsByClassName('promo__genre'),
-      bg = document.querySelectorAll('.promo__bg');
+      bg = document.querySelectorAll('.promo__bg'),
+      movieList = document.getElementsByClassName('promo__interactive-item');
+
 adv[0].remove();
 genre[0].textContent = 'ДРАМА';
 bg[0].style.cssText = 'background: url(../img/bg.jpg) center top/cover no-repeat;';
+
+for (let i = 0; i < movieList.length; i++) {
+    movieList[i].innerHTML = `${i + 1}. ${newMovieDB[i + 1]} <div class="delete"></div>`;
+}
+console.log(movieList.length);
+
