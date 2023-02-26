@@ -24,7 +24,9 @@ const movieDB = {
     ]
 };
 
-function sortTitles(data) {
+// Мой вариант решения задачи:
+
+/* function sortTitles(data) {
     let newMovieDB = {};
     for (let i = 0; i < data.movies.length; i++) {
         newMovieDB[i + 1] = data.movies.sort()[i];
@@ -47,4 +49,31 @@ for (let i = 0; i < movieList.length; i++) {
     movieList[i].innerHTML = `${i + 1}. ${newMovieDB[i + 1]} <div class="delete"></div>`;
 }
 console.log(movieList.length);
+ */
 
+// Вариант Ивана
+
+const adv = document.querySelectorAll('.promo__adv img'),
+      poster = document.querySelector('.promo__bg'),
+      genre = poster.querySelector('.promo__genre'),
+      movieList = document.querySelector('.promo__interactive-list');
+
+adv.forEach(item => {
+    item.remove();
+});
+
+genre.textContent = 'драма';
+
+poster.style.backgroundImage = 'url("img/bg.jpg")';
+
+movieList.innerHTML = "";
+
+movieDB.movies.sort();
+
+movieDB.movies.forEach((film, i) => {
+    movieList.innerHTML += `
+        <li class="promo__interactive-item">${i + 1} ${film}
+            <div class="delete"></div>
+        </li>
+    `;
+});
