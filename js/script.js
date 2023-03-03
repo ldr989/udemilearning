@@ -105,6 +105,7 @@ const add = document.querySelectorAll('.add'),
       button = add[0].querySelector('button'),
       input = add[0].querySelector('.adding__input'),
       checkbox = add[0].querySelector('.checkbox');
+      
 
 
 
@@ -129,16 +130,82 @@ button.addEventListener('click', function(e){
         <li class="promo__interactive-item">${i + 1} ${film}
             <div class="delete"></div>
         </li>
-    `;
+        `;
     input.value ='';
     }); 
-    
+
     if (checkbox.checked) {
         console.log('"Добавляем любимый фильм"');
     }
+    
+});
+const deleteMovies = document.querySelectorAll('.delete'),
+      films = document.querySelectorAll('promo__interactive-item');
 
+
+const temporaryBD = [];
+
+movieDB.movies.forEach((item, index) => {
+        deleteMovies[index].addEventListener('click', () => {
+            temporaryBD.push(item);
+
+            deleteMovies[index].parentNode.remove();
+
+            temporaryBD.sort();
+
+            movieDB.movies = movieDB.movies.filter(e => !~temporaryBD.indexOf(e));
+
+            console.log(movieDB.movies, temporaryBD);
+        
+            movieList.innerHTML = '';
+
+            movieDB.movies.forEach((film, i) => {
+                movieList.innerHTML += `
+                <li class="promo__interactive-item">${i + 1} ${film}
+                    <div class="delete"></div>
+                </li>
+                `;
+            }); 
+    });
 });
 
+
+/* movieList.innerHTML = '';
+movieDB.movies.forEach((film, i) => {
+    movieList.innerHTML += `
+            <li class="promo__interactive-item">${i + 1} ${film}
+                <div class="delete"></div>
+            </li>
+            `;
+
+}); */
+/* for (let i = 0; i < deleteMovies.length; i++) {
+
+} */
+
+/* deleteMovies.addEventListener('click', () => {
+    deleteMovies.parentNode.remove();
+    console.log(movieDB.movies);
+}, { once: true });  */
+
+
+
+/* item.addEventListener('click', function () {
+    movieDB.movies.splice(index, 1);
+    console.log(movieDB.movies);
+});
+item.removeEventListener('click', function () {
+    movieDB.movies.splice(index, 1);
+    console.log(movieDB.movies);
+}); */
+
+/* deleteMovies[0].addEventListener('click', function (e) {
+    console.log(deleteMovies);
+}); */
+
+/* deleteMovies.addEventListener('click', function (e) {
+    console.log(deleteMovies);
+}); */
 
 
 
