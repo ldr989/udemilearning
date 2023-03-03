@@ -88,22 +88,23 @@ movieDB.movies.forEach((film, i) => {
 новый фильм добавляется в список. Страница не должна перезагружаться.
 Новый фильм должен добавляться в movieDB.movies.
 Для получения доступа к значению input - обращаемся к нему как input.value;
-P.S. Здесь есть несколько вариантов решения задачи, принимается любой, но рабочий.
+P.S. Здесь есть несколько вариантов решения задачи, принимается любой, но рабочий.+
 
-2) Если название фильма больше, чем 21 символ - обрезать его и добавить три точки
+2) Если название фильма больше, чем 21 символ - обрезать его и добавить три точки +
 
 3) При клике на мусорную корзину - элемент будет удаляться из списка (сложно)
 
 4) Если в форме стоит галочка "Сделать любимым" - в консоль вывести сообщение: 
-"Добавляем любимый фильм"
+"Добавляем любимый фильм" +
 
-5) Фильмы должны быть отсортированы по алфавиту */
+5) Фильмы должны быть отсортированы по алфавиту +*/
 
 // Мой вариант решения задачи:
 
 const add = document.querySelectorAll('.add'),
       button = add[0].querySelector('button'),
-      input = add[0].querySelector('.adding__input');
+      input = add[0].querySelector('.adding__input'),
+      checkbox = add[0].querySelector('.checkbox');
 
 
 
@@ -117,14 +118,27 @@ button.addEventListener('click', function(e){
     } else {
         cut = input.value.toLowerCase();
     }
-    
-    movieDB.movies.push(cut);
-    movieList.innerHTML += `
-        <li class="promo__interactive-item">${movieList.length + 1} ${cut}
+    const makeFirstLetterCapitalized = cut.charAt(0).toUpperCase() + cut.slice(1);
+    movieList.innerHTML ='';
+
+    movieDB.movies.push(makeFirstLetterCapitalized);
+    movieDB.movies.sort();
+
+    movieDB.movies.forEach((film, i) => {
+        movieList.innerHTML += `
+        <li class="promo__interactive-item">${i + 1} ${film}
             <div class="delete"></div>
         </li>
     `;
-    console.log(movieList);
+    input.value ='';
+    }); 
+    
+    if (checkbox.checked) {
+        console.log('"Добавляем любимый фильм"');
+    }
+
 });
+
+
 
 
