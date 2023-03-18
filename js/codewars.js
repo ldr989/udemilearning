@@ -24,7 +24,7 @@ spinWords("This is another test")=> returns "This is rehtona test" */
 
 
 
-function spinWords(string) {
+/* function spinWords(string) {
     const result = string.split(' ');
     
     result.forEach((element, i) => {
@@ -41,4 +41,23 @@ function spinWords(string) {
 
     
 }
-spinWords("Hey fellow warriors");
+spinWords("Hey fellow warriors"); */
+
+
+// arrayDiff([1,2],[1]) == [2]
+
+function arrayDiff(a, b) {
+    let result = [];
+
+    result = a.filter(e => !~b.indexOf(e));
+    b.forEach(element => {
+        if (!a.includes(element)) {
+            result.push(element);
+        }
+    });
+    return console.log(result);
+}
+
+
+arrayDiff([1, 2, 2], [1, 3]);
+
