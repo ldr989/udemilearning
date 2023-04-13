@@ -46,18 +46,71 @@ spinWords("Hey fellow warriors"); */
 
 // arrayDiff([1,2],[1]) == [2]
 
-function arrayDiff(a, b) {
-    let result = [];
+// function arrayDiff(a, b) {
+//     let result = [];
 
-    result = a.filter(e => !~b.indexOf(e));
-    b.forEach(element => {
-        if (!a.includes(element)) {
-            result.push(element);
-        }
+//     result = a.filter(e => !~b.indexOf(e));
+//     b.forEach(element => {
+//         if (!a.includes(element)) {
+//             result.push(element);
+//         }
+//     });
+//     return console.log(result);
+// }
+
+
+// arrayDiff([1, 2, 2], [1, 3]);
+
+
+
+// Task 20
+
+const films = [
+    {
+        name: 'Titanic',
+        rating: 9
+    },
+    {
+        name: 'Die hard 5',
+        rating: 5
+    },
+    {
+        name: 'Matrix',
+        rating: 8
+    },
+    {
+        name: 'Some bad film',
+        rating: 4
+    }
+];
+
+function showGoodFilms(arr) {
+    return arr.filter(item => item.rating >= 8);
+}
+console.log(showGoodFilms(films));
+
+function showListOfFilms(arr) {
+
+    return arr.map(item => item.name).join(', ');
+    
+}
+console.log(showListOfFilms(films));
+
+function setFilmsIds(arr) {
+    let result = [];
+    arr.forEach(function(item, index) {
+        item.id = index;
+        result.push(item);
     });
-    return console.log(result);
+    return result;
 }
 
+// console.log(setFilmsIds(films));
 
-arrayDiff([1, 2, 2], [1, 3]);
+const tranformedArray = setFilmsIds(films);
 
+function checkFilms(arr) {
+    return arr.every(item => item.id >= 0);
+}
+
+console.log(checkFilms(tranformedArray));
