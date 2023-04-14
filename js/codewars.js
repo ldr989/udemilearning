@@ -65,52 +65,82 @@ spinWords("Hey fellow warriors"); */
 
 // Task 20
 
-const films = [
-    {
-        name: 'Titanic',
-        rating: 9
-    },
-    {
-        name: 'Die hard 5',
-        rating: 5
-    },
-    {
-        name: 'Matrix',
-        rating: 8
-    },
-    {
-        name: 'Some bad film',
-        rating: 4
-    }
+// const films = [
+//     {
+//         name: 'Titanic',
+//         rating: 9
+//     },
+//     {
+//         name: 'Die hard 5',
+//         rating: 5
+//     },
+//     {
+//         name: 'Matrix',
+//         rating: 8
+//     },
+//     {
+//         name: 'Some bad film',
+//         rating: 4
+//     }
+// ];
+
+// function showGoodFilms(arr) {
+//     return arr.filter(item => item.rating >= 8);
+// }
+// console.log(showGoodFilms(films));
+
+// function showListOfFilms(arr) {
+
+//     return arr.map(item => item.name).join(', ');
+    
+// }
+// console.log(showListOfFilms(films));
+
+// function setFilmsIds(arr) {
+//     let result = [];
+//     arr.forEach(function(item, index) {
+//         item.id = index;
+//         result.push(item);
+//     });
+//     return result;
+// }
+
+// // console.log(setFilmsIds(films));
+
+// const tranformedArray = setFilmsIds(films);
+
+// function checkFilms(arr) {
+//     return arr.every(item => item.id >= 0);
+// }
+
+// console.log(checkFilms(tranformedArray));
+
+// task 21
+
+const funds = [
+    { amount: -1400 },
+    { amount: 2400 },
+    { amount: -1000 },
+    { amount: 500 },
+    { amount: 10400 },
+    { amount: -11400 }
 ];
 
-function showGoodFilms(arr) {
-    return arr.filter(item => item.rating >= 8);
-}
-console.log(showGoodFilms(films));
+const getPositiveIncomeAmount = (data) => {
+    let calc = 0;
+    data.filter(item => item.amount > 0).forEach(item => calc += item.amount);
+    return calc;
 
-function showListOfFilms(arr) {
+};
 
-    return arr.map(item => item.name).join(', ');
-    
-}
-console.log(showListOfFilms(films));
+const getTotalIncomeAmount = (data) => {
+    let calc = 0;
+    if (data.some(item => item.amount < 0)) {
+        data.forEach(item => calc += item.amount);
+        return calc;
+    } else {
+        return getPositiveIncomeAmount(data);
+    }
+};
 
-function setFilmsIds(arr) {
-    let result = [];
-    arr.forEach(function(item, index) {
-        item.id = index;
-        result.push(item);
-    });
-    return result;
-}
-
-// console.log(setFilmsIds(films));
-
-const tranformedArray = setFilmsIds(films);
-
-function checkFilms(arr) {
-    return arr.every(item => item.id >= 0);
-}
-
-console.log(checkFilms(tranformedArray));
+console.log(getTotalIncomeAmount(funds));
